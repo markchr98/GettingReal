@@ -10,8 +10,7 @@ namespace Getting_real
 {
     class Department
     {
-        private List<Patient> PatientList = new List<Patient>();
-        private JObject departmentResponse;
+        private List<Patient> PatientList = new List<Patient>();        
         private string departmentId;
         private string departmentName;
         public string DepartmentId
@@ -37,6 +36,27 @@ namespace Getting_real
         public void AddPatient(Patient patient)
         {
             PatientList.Add(patient);
+        }
+        public static List<Department> GetNewDeparments(string ip)
+        {
+            using (WebClient client = new WebClient())
+            {
+                List<Department> departments = new List<Department>();
+                string URL = "http://" + ip + ":5000/api/Departments";
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
+                JArray response = JArray.Parse(client.DownloadString(URL));
+                
+                foreach (var department in response.Children())
+                {
+                    departments.Add(new Department()
+                    {
+                        DepartmentId = (string)department["departmentId"],
+                        DepartmentName = (string)department["name"]
+                    });
+                }
+                return departments;
+            }
         }
     }
 }
