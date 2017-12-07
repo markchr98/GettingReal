@@ -13,14 +13,14 @@ namespace Getting_real
 
         private JObject patientResponse = new JObject();
 
-        private string ControlSignal;
-        private string ImmobilityAlertSetting;
-        private string ImmobilityAlertTimer;
-        private string BedEmptyTimer;
-        private string BedExitAlertTimer;
-        private string BedExitAlertSetting;
-        private string SystemError;
-        private string SystemErrorTimer;
+        private string controlSignal;
+        private string immobilityAlertSetting;
+        private string immobilityAlertTimer;
+        private string bedEmptyTimer;
+        private string bedExitAlertTimer;
+        private string bedExitAlertSetting;
+        private string systemError;
+        private string systemErrorTimer;
 
         public string ControlSignal
         {

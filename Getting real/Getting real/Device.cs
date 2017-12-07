@@ -19,31 +19,31 @@ namespace Getting_real
         private string assignedPatientID; 
 
 
-         public string deviceId
+         public string DeviceId
         {
             get { }
             set { }
         }
 
-         public string serialNumber
+         public string SerialNumber
         {
             get { }
             set { }
         }
 
-         public string connectionQuality
+         public string ConnectionQuality
         {
             get { }
             set { }
         }
 
-         public string lastOnlineTime
+         public string LastOnlineTime
         {
             get { }
             set { }
         }
 
-         public string assignedPatientID
+         public string AssignedPatientID
         {
             get { }
             set { }

@@ -23,61 +23,61 @@ namespace Getting_real
         private string editedOn;
         private string editedBy; 
 
-        public string patientId
+        public string PatientId
         {
             get { }
             set { }
         }
 
-        public string firstname
+        public string Firstname
         {
             get { }
             set { }
         }
 
-       public string lastname
+       public string Lastname
         {
             get { }
             set { }
         }
 
-      public string birthDate
+      public string BirthDate
         {
             get { }
             set { }
         }
 
-    public string departmentId
+    public string DepartmentId
         {
             get { }
             set { }
         }
 
-    public string patientNumber
+    public string PatientNumber
         {
             get { }
             set { }
         }
 
-    public string entryDate
+    public string EntryDate
         {
             get { }
             set { }
         }
 
-    public string dichargeDate
+    public string DichargeDate
         {
             get { }
             set { }
         }
 
-    public string editedOn
+    public string EditedOn
         {
             get { }
             set { }
         }
 
-    public string editedBy
+    public string EditedBy
         {
             get { }
             set { }
