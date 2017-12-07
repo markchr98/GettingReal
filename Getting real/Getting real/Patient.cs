@@ -25,62 +25,62 @@ namespace Getting_real
 
         public string PatientId
         {
-            get { }
-            set { }
+            get { return patientId; }
+            set { patientId = value; }
         }
 
         public string Firstname
         {
-            get { }
-            set { }
+            get { return firstname; }
+            set { firstname = value; }
         }
 
        public string Lastname
         {
-            get { }
-            set { }
+            get { return lastname; }
+            set { lastname = value; }
         }
 
       public string BirthDate
         {
-            get { }
-            set { }
+            get { return birthDate; }
+            set { birthDate = value; }
         }
 
     public string DepartmentId
         {
-            get { }
-            set { }
+            get { return departmentId; }
+            set { departmentId = value; }
         }
 
     public string PatientNumber
         {
-            get { }
-            set { }
+            get { return patientNumber; }
+            set { patientNumber = value; }
         }
 
     public string EntryDate
         {
-            get { }
-            set { }
+            get { return entryDate; }
+            set { entryDate = value; }
         }
 
     public string DichargeDate
         {
-            get { }
-            set { }
+            get { return dichargeDate; }
+            set { dichargeDate = value; }
         }
 
     public string EditedOn
         {
-            get { }
-            set { }
+            get { return editedOn; }
+            set { editedOn = value; }
         }
 
     public string EditedBy
         {
-            get { }
-            set { }
+            get { return editedBy; }
+            set { editedBy = value; }
         }
         
         

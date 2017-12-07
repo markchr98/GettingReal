@@ -21,32 +21,32 @@ namespace Getting_real
 
          public string DeviceId
         {
-            get { }
-            set { }
+            get { return deviceId; }
+            set { deviceId = value; }
         }
 
          public string SerialNumber
         {
-            get { }
-            set { }
+            get { return serialNumber ; }
+            set { serialNumber = value; }
         }
 
          public string ConnectionQuality
         {
-            get { }
-            set { }
+            get { return connectionQuality; }
+            set { connectionQuality = value; }
         }
 
          public string LastOnlineTime
         {
-            get { }
-            set { }
+           get { return lastOnlineTime; }
+           set { lastOnlineTime = value; }
         }
 
          public string AssignedPatientId
         {
-            get { }
-            set { }
+            get { return assignedPatientID ; }
+            set { assignedPatientID = value; }
         }
 
 
