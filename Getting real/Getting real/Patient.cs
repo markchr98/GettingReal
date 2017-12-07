@@ -91,16 +91,35 @@ namespace Getting_real
 
         }
 
-        public void GetNewPatientResponse(string ip,string departmentId)
+        public List<Patient> GetNewPatientResponse(string ip)
         {
             using (WebClient client = new WebClient())
             {
-                string URL = "http://" + ip + ":5000/api/"+departmentId+"/Patients";
-                string PARM = "";
+                List<Patient> patients = new List<Patient>();
+                string URL = "http://" + ip + ":5000/api/Patients";
                 client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
-                JObject result = JObject.Parse(client.UploadString(URL, PARM));
-                patientResponse = result;
+
+                JArray response = JArray.Parse(client.DownloadString(URL));
+
+                foreach (var patient in response.Children())
+                {
+                    patients.Add(new Patient()
+                    {
+                        patientId = (string)patient["patientId"],
+                        firstname = (string)patient["firstname"],
+                        lastname = (string)patient["lastname"],
+                        birthDate = (string)patient["birthDate"],
+                        departmentId = (string)patient["departmentId"],
+                        patientNumber = (string)patient["patientNumber"],
+                        entryDate = (string)patient["entryDate"],
+                        dichargeDate = (string)patient["dichargeDate"],
+                        editedOn = (string)patient["editedOn"],
+                        editedBy = (string)patient["editedBy"]
+                    });
+                }
+
+                return patients;
             }
         }
     }

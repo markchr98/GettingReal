@@ -10,7 +10,7 @@ namespace Getting_real
 {
     class Department
     {
-        private List<Patient> PatientList = new List<Patient>();        
+        private List<Patient> PatientList = new List<Patient>();
         private string departmentId;
         private string departmentName;
         public string DepartmentId
@@ -51,8 +51,8 @@ namespace Getting_real
                 {
                     departments.Add(new Department()
                     {
-                        DepartmentId = (string)department["departmentId"],
-                        DepartmentName = (string)department["name"]
+                        departmentId = (string)department["departmentId"],
+                        departmentName = (string)department["name"]
                     });
                 }
                 return departments;

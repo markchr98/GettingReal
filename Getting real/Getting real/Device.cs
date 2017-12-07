@@ -16,7 +16,7 @@ namespace Getting_real
         private string serialNumber;
         private string connectionQuality;
         private string lastOnlineTime;
-        private string assignedPatientID; 
+        private string assignedPatientId; 
 
 
          public string DeviceId
@@ -43,7 +43,7 @@ namespace Getting_real
             set { }
         }
 
-         public string AssignedPatientID
+         public string AssignedPatientId
         {
             get { }
             set { }
@@ -57,16 +57,30 @@ namespace Getting_real
 
         }
 
-        public void GetNewDeviceResponse(string ip)
+        public List<Device> GetNewDeviceResponse(string ip)
         {
             using (WebClient client = new WebClient())
             {
-                string URL = "http://" + ip + ":5000/api/Devices";
-                string PARM = "";
+                List<Device> devices = new List<Device>();
+                string URL = "http://" + ip + ":5000/api/Devices";               
                 client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-                client.Headers[HttpRequestHeader.Authorization] = "Bearer "+Controller.token.AccessToken;
-                JObject result = JObject.Parse(client.UploadString(URL, PARM));
-                deviceResponse = result;
+                client.Headers[HttpRequestHeader.Authorization] = "Bearer "+Controller.token.AccessToken;               
+                
+                JArray response = JArray.Parse(client.DownloadString(URL));
+
+                foreach (var device in response.Children())
+                {
+                    devices.Add(new Device()
+                    {
+                        deviceId = (string)device["deviceId"],
+                        serialNumber = (string)device["serialNumber"],
+                        connectionQuality = (string)device["connectionQuality"],
+                        lastOnlineTime = (string)device["lastOnlineTime"],
+                        assignedPatientId = (string)device["assignedPaientId"]
+                    });
+                }                
+                
+                return devices;
             }
         }
     }
