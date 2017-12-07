@@ -91,13 +91,14 @@ namespace Getting_real
 
         }
 
-        public List<Patient> GetNewPatientResponse(string ip)
+        //skal have en department parameter
+        public List<Patient> GetNewPatientResponse(string ip,string department)
         {
             using (WebClient client = new WebClient())
             {
                 List<Patient> patients = new List<Patient>();
-                string URL = "http://" + ip + ":5000/api/Patients";
-                client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                string URL = "http://" + ip + ":5000/api/Departments/"+department+"/PatientsPatients";
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
 
                 JArray response = JArray.Parse(client.DownloadString(URL));

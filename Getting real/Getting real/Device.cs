@@ -63,7 +63,7 @@ namespace Getting_real
             {
                 List<Device> devices = new List<Device>();
                 string URL = "http://" + ip + ":5000/api/Devices";               
-                client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer "+Controller.token.AccessToken;               
                 
                 JArray response = JArray.Parse(client.DownloadString(URL));
