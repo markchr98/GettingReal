@@ -45,8 +45,8 @@ namespace Getting_real
 
          public string AssignedPatientId
         {
-            get { return assignedPatientID ; }
-            set { assignedPatientID = value; }
+            get { return assignedPatientId ; }
+            set { assignedPatientId = value; }
         }
 
 

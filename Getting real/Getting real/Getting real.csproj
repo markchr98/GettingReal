@@ -48,8 +48,6 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="Department.cs" />
-    <Compile Include="DepartmentRepository.cs" />
-    <Compile Include="DeviceRepository.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
