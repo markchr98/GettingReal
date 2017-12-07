@@ -16,7 +16,7 @@ namespace Getting_real
         public string DepartmentId
         {
             get { return departmentId; }
-            set { this.departmentId = value; }
+            set { departmentId = value; }
         }
 
         public string DepartmentName

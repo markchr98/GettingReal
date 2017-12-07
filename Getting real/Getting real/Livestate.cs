@@ -24,50 +24,50 @@ namespace Getting_real
 
         public string ControlSignal
         {
-            get {}
-            set {}
+            get { return controlSignal; }
+            set { controlSignal = value; }
         }
 
         public string ImmobilityAlertSetting
         {
-            get {}
-            set {}
+            get { return immobilityAlertSetting; }
+            set { immobilityAlertSetting = value; }
         }
 
      public string ImmobilityAlertTimer
         {
-            get {}
-            set {}
+            get { immobilityAlertTimer; }
+            set { immobilityAlertTimer = value; }
         }
 
      public string BedEmptyTimer
         {
-            get {}
-            set {}
+            get { return bedEmptyTimer; }
+            set { bedEmptyTimer = value; }
         }
 
      public string BedExitAlertTimer
         {
-            get {}
-            set {}
+            get { return bedExitAlertTimer; }
+            set { bedExitAlertTimer = value; }
         }
 
      public string BedExitAlertSetting
         {
-            get {}
-            set {}
+            get { return bedExitAlertSetting; }
+            set { bedExitAlertSetting = value; }
         }
 
      public string SystemError
         {
-            get {}
-            set {}
+            get { return systemError; }
+            set { systemError = value; }
         }
 
      public string SystemErrorTimer
         {
-            get {}
-            set {}
+            get { return systemErrorTimer; }
+            set { systemErrorTimer = value; }
         }
 
     }
