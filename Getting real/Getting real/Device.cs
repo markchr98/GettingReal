@@ -12,6 +12,46 @@ namespace Getting_real
     {
         JObject deviceResponse = new JObject();
 
+        private string deviceId;
+        private string serialNumber;
+        private string connectionQuality;
+        private string lastOnlineTime;
+        private string assignedPatientID; 
+
+
+         public string deviceId
+        {
+            get { }
+            set { }
+        }
+
+         public string serialNumber
+        {
+            get { }
+            set { }
+        }
+
+         public string connectionQuality
+        {
+            get { }
+            set { }
+        }
+
+         public string lastOnlineTime
+        {
+            get { }
+            set { }
+        }
+
+         public string assignedPatientID
+        {
+            get { }
+            set { }
+        }
+
+
+
+
         public Device()
         {
 

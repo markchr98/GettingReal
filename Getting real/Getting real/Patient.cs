@@ -12,6 +12,80 @@ namespace Getting_real
     {
         private JObject patientResponse = new JObject();
         
+        private string patientId;
+        private string firstname;
+        private string lastname;
+        private string birthDate;
+        private string departmentId;
+        private string patientNumber;
+        private string entryDate;
+        private string dichargeDate;
+        private string editedOn;
+        private string editedBy; 
+
+        public string patientId
+        {
+            get { }
+            set { }
+        }
+
+        public string firstname
+        {
+            get { }
+            set { }
+        }
+
+       public string lastname
+        {
+            get { }
+            set { }
+        }
+
+      public string birthDate
+        {
+            get { }
+            set { }
+        }
+
+    public string departmentId
+        {
+            get { }
+            set { }
+        }
+
+    public string patientNumber
+        {
+            get { }
+            set { }
+        }
+
+    public string entryDate
+        {
+            get { }
+            set { }
+        }
+
+    public string dichargeDate
+        {
+            get { }
+            set { }
+        }
+
+    public string editedOn
+        {
+            get { }
+            set { }
+        }
+
+    public string editedBy
+        {
+            get { }
+            set { }
+        }
+        
+        
+
+
         public Patient()
         {
 
