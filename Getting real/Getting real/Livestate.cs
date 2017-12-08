@@ -73,12 +73,12 @@ namespace Getting_real
             set { systemErrorTimer = value; }
         }
 
-        public static List<Livestate> GetNewDeparments(string ip)
+        public static List<Livestate> GetNewLivestates(string ip, string deviceSerial)
         {
             using (WebClient client = new WebClient())
             {
                 List<Livestate> livestates = new List<Livestate>();
-                string URL = "http://" + ip + ":5000/api/Livestates";
+                string URL = "http://" + ip + ":5000/api/"+deviceSerial+"/Livestates";
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
                 JArray response = JArray.Parse(client.DownloadString(URL));

@@ -92,7 +92,7 @@ namespace Getting_real
         }
 
         //skal have en department parameter
-        public List<Patient> GetNewPatientResponse(string ip,string department)
+        public static List<Patient> GetNewPatientResponse(string ip,string departmentId)
         {
             using (WebClient client = new WebClient())
             {
