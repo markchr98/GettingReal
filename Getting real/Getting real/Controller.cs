@@ -48,9 +48,9 @@ namespace Getting_real
                     case "livestate":
                         foreach (Device d in Device.GetNewDeviceResponse(ip))
                         {
-                            foreach (Livestate l in Livestate.GetNewLivestates(ip, d.deviceSerial))
+                            foreach (Livestate l in Livestate.GetNewLivestates(ip, d.SerialNumber))
                             {
-                                Console.WriteLine();
+                                Console.WriteLine(l.BedEmptyTimer,l.BedExitAlertSetting,l.BedExitAlertTimer,l.ControlSignal,l.ImmobilityAlertSetting,l.ImmobilityAlertTimer,l.SystemError,l.SystemErrorTimer);
                             }
                         }
                         break;

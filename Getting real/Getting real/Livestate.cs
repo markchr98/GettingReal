@@ -5,9 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Net;
 
 namespace Getting_real
 {
@@ -39,7 +36,7 @@ namespace Getting_real
 
         public string ImmobilityAlertTimer
         {
-            get { immobilityAlertTimer; }
+            get { return immobilityAlertTimer; }
             set { immobilityAlertTimer = value; }
         }
 
@@ -78,7 +75,7 @@ namespace Getting_real
             using (WebClient client = new WebClient())
             {
                 List<Livestate> livestates = new List<Livestate>();
-                string URL = "http://" + ip + ":5000/api/"+deviceSerial+"/Livestates";
+                string URL = "http://" + ip + ":5000/api/" + deviceSerial + "/Livestates";
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
                 JArray response = JArray.Parse(client.DownloadString(URL));
@@ -103,3 +100,5 @@ namespace Getting_real
 
     }
 }
+
+

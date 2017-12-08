@@ -57,7 +57,7 @@ namespace Getting_real
 
         }
 
-        public List<Device> GetNewDeviceResponse(string ip)
+        public static List<Device> GetNewDeviceResponse(string ip)
         {
             using (WebClient client = new WebClient())
             {

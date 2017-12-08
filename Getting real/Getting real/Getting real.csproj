@@ -49,6 +49,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Livestate.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
