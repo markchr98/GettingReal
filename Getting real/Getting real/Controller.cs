@@ -13,12 +13,14 @@ namespace Getting_real
 
         public void Run()
         {
+            Console.WriteLine("running");
             //Demo
             token.GetNewTokenResponse(ip);
             string input = "";
             while (input != "exit")
             {
                 Console.Clear();
+                Console.WriteLine("token/departments/patients/devices/livestates");
                 switch (input = Console.ReadLine())
                 {
                     case "token":
@@ -35,27 +37,53 @@ namespace Getting_real
                         {
                             foreach (Patient p in Patient.GetNewPatientResponse(ip, d.DepartmentId))
                             {
-                                Console.WriteLine(p.PatientNumber, p.DepartmentId, p.PatientId, p.Firstname, p.Lastname, p.BirthDate, p.EntryDate, p.DichargeDate, p.EditedOn, p.EditedBy);
+                                string result = "";
+                                result += p.PatientNumber ?? "null";
+                                result += p.DepartmentId ?? "null";
+                                result += p.PatientId ?? "null";
+                                result += p.Firstname ?? "null";
+                                result += p.Lastname ?? "null";
+                                result += p.BirthDate ?? "null";
+                                result += p.EntryDate ?? "null";
+                                result += p.DichargeDate ?? "null";
+                                result += p.EditedOn ?? "null";
+                                result += p.EditedBy ?? "null";
+                                Console.WriteLine(result);
                             }
                         }
                         break;
                     case "devices":
                         foreach (Device d in Device.GetNewDeviceResponse(ip))
                         {
-                            Console.WriteLine(d.AssignedPatientId, d.DeviceId, d.SerialNumber, d.ConnectionQuality, d.LastOnlineTime);
+                            string result = "";
+                            result += d.AssignedPatientId ?? "null";
+                            result += d.DeviceId ?? "null";
+                            result += d.SerialNumber ?? "null";
+                            result += d.ConnectionQuality ?? "null";
+                            result += d.LastOnlineTime ?? "null";
+                            Console.WriteLine(result);
                         }
                         break;
-                    case "livestate":
+                    case "livestates":
                         foreach (Device d in Device.GetNewDeviceResponse(ip))
                         {
                             foreach (Livestate l in Livestate.GetNewLivestates(ip, d.SerialNumber))
                             {
-                                Console.WriteLine(l.BedEmptyTimer,l.BedExitAlertSetting,l.BedExitAlertTimer,l.ControlSignal,l.ImmobilityAlertSetting,l.ImmobilityAlertTimer,l.SystemError,l.SystemErrorTimer);
+                                string result = "";
+                                result += l.BedEmptyTimer ?? "null";
+                                result += l.BedExitAlertSetting ?? "null";
+                                result += l.BedExitAlertTimer ?? "null";
+                                result += l.ControlSignal ?? "null";
+                                result += l.ImmobilityAlertSetting ?? "null";
+                                result += l.ImmobilityAlertTimer ?? "null";
+                                result += l.SystemError ?? "null";
+                                result += l.SystemErrorTimer ?? "null";
+                                Console.WriteLine(result);
                             }
                         }
                         break;
-
                 }
+                Console.ReadLine();
             }
         }
     }

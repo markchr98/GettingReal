@@ -97,7 +97,7 @@ namespace Getting_real
             using (WebClient client = new WebClient())
             {
                 List<Patient> patients = new List<Patient>();
-                string URL = "http://" + ip + ":5000/api/Departments/"+department+"/PatientsPatients";
+                string URL = "http://" + ip + ":5000/api/Departments/"+departmentId+"/Patients";
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
 
