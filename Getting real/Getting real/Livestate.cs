@@ -5,13 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Getting_real
 {
     class Livestate
     {
-
-        private JObject patientResponse = new JObject();
 
         private string controlSignal;
         private string immobilityAlertSetting;
@@ -21,6 +20,8 @@ namespace Getting_real
         private string bedExitAlertSetting;
         private string systemError;
         private string systemErrorTimer;
+        
+        
 
         public string ControlSignal
         {
@@ -69,32 +70,36 @@ namespace Getting_real
             get { return systemErrorTimer; }
             set { systemErrorTimer = value; }
         }
-
-        public static List<Livestate> GetNewLivestates(string ip, string deviceSerial)
+        
+        public static Livestate GetNewLivestates(string ip, string deviceSerial)
         {
             using (WebClient client = new WebClient())
             {
-                List<Livestate> livestates = new List<Livestate>();
-                string URL = "http://" + ip + ":5000/api/" + deviceSerial + "/Livestates";
-                client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                Livestate livestate = new Livestate();
+                string URL = "http://" + ip + ":5000/api/Devices/" + deviceSerial + "/LiveState";
+                client.Headers[HttpRequestHeader.ContentType] = "application/text/plain";
                 client.Headers[HttpRequestHeader.Authorization] = "Bearer " + Controller.token.AccessToken;
-                JArray response = JArray.Parse(client.DownloadString(URL));
+                
+                string response = client.DownloadString(URL);
+                
+                JObject jObject = JObject.Parse(response);
 
-                foreach (var livestate in response.Children())
-                {
-                    livestates.Add(new Livestate()
-                    {
-                        controlSignal = (string)livestate["controlSignal"],
-                        immobilityAlertSetting = (string)livestate["immobilityAlertSetting"],
-                        immobilityAlertTimer = (string)livestate["immobilityAlertTimer"],
-                        bedEmptyTimer = (string)livestate["bedEmptyTimer"],
-                        bedExitAlertTimer = (string)livestate["bedExitAlertTimer"],
-                        bedExitAlertSetting = (string)livestate["bedExitAlertSetting"],
-                        systemError = (string)livestate["systemError"],
-                        systemErrorTimer = (string)livestate["systemErrorTimer"],
-                    });
-                }
-                return livestates;
+                //find data fra json i json
+                //JObject patient = (JObject)(jObject["patient"]);
+                //string patientId = (string)patient["patientId"];
+                //livestate.device = (string)jObject["deivce"];
+                //livestate.patient = (string)jObject["patient"];
+
+                livestate.controlSignal = (string)jObject["controlSignal"];
+                livestate.immobilityAlertSetting = (string)jObject["immobilityAlertSetting"];
+                livestate.immobilityAlertTimer = (string)jObject["immobilityAlertTimer"];
+                livestate.bedEmptyTimer = (string)jObject["bedEmptyTimer"];
+                livestate.bedExitAlertTimer = (string)jObject["bedExitAlertTimer"];
+                livestate.bedExitAlertSetting = (string)jObject["bedExitAlertSetting"];
+                livestate.systemError = (string)jObject["systemError"];
+                livestate.systemErrorTimer = (string)jObject["systemErrorTimer"];                   
+                
+                return livestate;
             }
         }
 
