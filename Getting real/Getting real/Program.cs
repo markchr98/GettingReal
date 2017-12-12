@@ -12,6 +12,7 @@ namespace Getting_real
     {        
         static void Main(string[] args)
         {
+            Console.WriteLine("starting");
             Controller controller = new Controller();
             controller.Run();
         }
