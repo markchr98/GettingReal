@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Getting_real
 {
-    class Token
+    public class Token
     {
-        private JObject tokenResponse;        
-        
+        private JObject tokenResponse;
+     
         public string AccessToken
         {
             get { return (string)tokenResponse["access_token"]; }
@@ -23,8 +23,9 @@ namespace Getting_real
         
         public Token()
         {
+            
         }
-
+        
         public void GetNewTokenResponse(string ip)
         {
             using (WebClient client = new WebClient())
