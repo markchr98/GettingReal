@@ -19,7 +19,7 @@ namespace Getting_real
         private string departmentId;
         private string patientNumber;
         private string entryDate;
-        private string dichargeDate;
+        private string dischargeDate;
         private string editedOn;
         private string editedBy; 
 
@@ -65,10 +65,10 @@ namespace Getting_real
             set { entryDate = value; }
         }
 
-    public string DichargeDate
+    public string DischargeDate
         {
-            get { return dichargeDate; }
-            set { dichargeDate = value; }
+            get { return dischargeDate; }
+            set { dischargeDate = value; }
         }
 
     public string EditedOn
@@ -114,7 +114,7 @@ namespace Getting_real
                         departmentId = (string)patient["departmentId"],
                         patientNumber = (string)patient["patientNumber"],
                         entryDate = (string)patient["entryDate"],
-                        dichargeDate = (string)patient["dichargeDate"],
+                        dischargeDate = (string)patient["dischargeDate"],
                         editedOn = (string)patient["editedOn"],
                         editedBy = (string)patient["editedBy"]
                     });
