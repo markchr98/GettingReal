@@ -13,13 +13,13 @@ namespace Getting_real
         public const string ip = "localhost";
         public static Token token = new Token();
 
-        public static void RunInsert()
+        public static void Run()
         {
             MySqlDataReader reader;
             token.GetNewTokenResponse(ip);
             //insert departments. write check ifExists and update ifExists is true
 
-            foreach(Department department in Department.GetNewDeparments(ip))
+            foreach (Department department in Department.GetNewDeparments(ip))
             {
                 int countDepartment = 0;
                 MySqlCommand getDepartments = new MySqlCommand("get_departments", DBConnection.Instance().Connection);
@@ -29,87 +29,200 @@ namespace Getting_real
                     {
                         //Check dep id først hvis eksisterer check på alle data. evt kun check på alle data i en ny timer
                         if (department.DepartmentId == reader["departmentId"].ToString())
-                        {                           
-                            countDepartment++;
-                            //midlertidig break, skal fjernes hvis der skal opdateres data
-                            break;
-                        }
-                        if(countDepartment == 0)
                         {
-                            //inserts department into cloud database
-                            MySqlCommand insertDepartment = new MySqlCommand("insertinto_department", DBConnection.Instance().Connection);
-                            insertDepartment.CommandType = CommandType.StoredProcedure;
-                            insertDepartment.Parameters.Add(new MySqlParameter("departmentId", department.DepartmentId));
-                            insertDepartment.Parameters.Add(new MySqlParameter("departmentName", department.DepartmentName));
-                            DBConnection.Instance().Open();
-                            insertDepartment.ExecuteNonQuery();
-                            DBConnection.Instance().Close();
-                        }
+                            countDepartment++;
+                            break;
+                        }                        
+                    }
+                    if (countDepartment == 0)
+                    {
+                        //inserts department into cloud database
+                        MySqlCommand insertDepartment = new MySqlCommand("insertinto_department", DBConnection.Instance().Connection);
+                        insertDepartment.CommandType = CommandType.StoredProcedure;
+                        insertDepartment.Parameters.Add(new MySqlParameter("departmentId", department.DepartmentId));
+                        insertDepartment.Parameters.Add(new MySqlParameter("departmentName", department.DepartmentName));
+                        DBConnection.Instance().Open();
+                        insertDepartment.ExecuteNonQuery();
+                        DBConnection.Instance().Close();
+                    }
+                    else
+                    {
+                        MySqlCommand updateDepartment = new MySqlCommand("update_department", DBConnection.Instance().Connection);
+                        updateDepartment.CommandType = CommandType.StoredProcedure;
+                        updateDepartment.Parameters.Add(new MySqlParameter("departmentId", department.DepartmentId));
+                        updateDepartment.Parameters.Add(new MySqlParameter("departmentName", department.DepartmentName));
+                        DBConnection.Instance().Open();
+                        updateDepartment.ExecuteNonQuery();
+                        DBConnection.Instance().Close();
                     }
                 }
                 //insert patients inside department loop because dep param is needed
-                foreach(Patient patient in Patient.GetNewPatientResponse(ip, department.DepartmentId))
+                foreach (Patient patient in Patient.GetNewPatientResponse(ip, department.DepartmentId))
                 {
                     int countPatient = 0;
                     MySqlCommand getPatients = new MySqlCommand("get_patients", DBConnection.Instance().Connection);
-                    using(reader = getDepartments.ExecuteReader())
+                    using (reader = getPatients.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             if (patient.PatientId == reader["patientId"].ToString())
                             {
                                 countPatient++;
-                                //midlertidig break, skal fjernes hvis der skal opdateres data
                                 break;
                             }
-                            if(countPatient==0)
-                            { 
-                                MySqlCommand insertPatient = new MySqlCommand("insertinto_patient", DBConnection.Instance().Connection);
-                                insertPatient.CommandType = CommandType.StoredProcedure;
-                                insertPatient.Parameters.Add(new MySqlParameter("departmentId", patient.DepartmentId));
-                                insertPatient.Parameters.Add(new MySqlParameter("patientId",patient.PatientId));
-                                insertPatient.Parameters.Add(new MySqlParameter("patientNumber",patient.PatientNumber));
-                                insertPatient.Parameters.Add(new MySqlParameter("firstname",patient.Firstname));
-                                insertPatient.Parameters.Add(new MySqlParameter("lastname",patient.Lastname));
-                                insertPatient.Parameters.Add(new MySqlParameter("birthDate", patient.BirthDate));
-                                insertPatient.Parameters.Add(new MySqlParameter("entryDate",patient.EntryDate));
-                                insertPatient.Parameters.Add(new MySqlParameter("dischargeDate", patient.DischargeDate));
-                                insertPatient.Parameters.Add(new MySqlParameter("editedOn", patient.EditedOn));
-                                insertPatient.Parameters.Add(new MySqlParameter("editedBy", patient.EditedBy));
-                                DBConnection.Instance().Open();
-                                insertPatient.ExecuteNonQuery();
-                                DBConnection.Instance().Close();
+                        }
+                        if (countPatient == 0)
+                        {
+                            MySqlCommand insertPatient = new MySqlCommand("insertinto_patient", DBConnection.Instance().Connection);
+                            insertPatient.CommandType = CommandType.StoredProcedure;
+
+                            insertPatient.Parameters.Add(new MySqlParameter("departmentId", patient.DepartmentId));
+                            insertPatient.Parameters.Add(new MySqlParameter("patientId", patient.PatientId));
+                            insertPatient.Parameters.Add(new MySqlParameter("patientNumber", patient.PatientNumber));
+                            insertPatient.Parameters.Add(new MySqlParameter("firstname", patient.Firstname));
+                            insertPatient.Parameters.Add(new MySqlParameter("lastname", patient.Lastname));
+                            insertPatient.Parameters.Add(new MySqlParameter("birthDate", patient.BirthDate));
+                            insertPatient.Parameters.Add(new MySqlParameter("entryDate", patient.EntryDate));
+                            insertPatient.Parameters.Add(new MySqlParameter("dischargeDate", patient.DischargeDate));
+                            insertPatient.Parameters.Add(new MySqlParameter("editedOn", patient.EditedOn));
+                            insertPatient.Parameters.Add(new MySqlParameter("editedBy", patient.EditedBy));
+
+                            DBConnection.Instance().Open();
+                            insertPatient.ExecuteNonQuery();
+                            DBConnection.Instance().Close();
+                        }
+                        else
+                        {
+                            MySqlCommand updatePatient = new MySqlCommand("update_patient", DBConnection.Instance().Connection);
+                            updatePatient.CommandType = CommandType.StoredProcedure;
+
+                            updatePatient.Parameters.Add(new MySqlParameter("departmentId", patient.DepartmentId));
+                            updatePatient.Parameters.Add(new MySqlParameter("patientId", patient.PatientId));
+                            updatePatient.Parameters.Add(new MySqlParameter("patientNumber", patient.PatientNumber));
+                            updatePatient.Parameters.Add(new MySqlParameter("firstname", patient.Firstname));
+                            updatePatient.Parameters.Add(new MySqlParameter("lastname", patient.Lastname));
+                            updatePatient.Parameters.Add(new MySqlParameter("birthDate", patient.BirthDate));
+                            updatePatient.Parameters.Add(new MySqlParameter("entryDate", patient.EntryDate));
+                            updatePatient.Parameters.Add(new MySqlParameter("dischargeDate", patient.DischargeDate));
+                            updatePatient.Parameters.Add(new MySqlParameter("editedOn", patient.EditedOn));
+                            updatePatient.Parameters.Add(new MySqlParameter("editedBy", patient.EditedBy));
+
+                            DBConnection.Instance().Open();
+                            updatePatient.ExecuteNonQuery();
+                            DBConnection.Instance().Close();
+                        }
+                    }
+                    foreach (Comment comment in Comment.GetComments(ip, patient.PatientId))
+                    {
+                        int countComment = 0;
+                        MySqlCommand getComments = new MySqlCommand("get_comment", DBConnection.Instance().Connection);
+                        using(reader = getComments.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (comment.CommentId == reader["commentId"].ToString())
+                                {
+                                    countComment++;
+                                    break;
+                                }
+                            }
+                            if(countComment == 0)
+                            {
+                                //insert
+                            }
+                            else
+                            {
+                                //update
                             }
                         }
                     }
+                    foreach (Observation observation in Observation.GetObservations(ip, patient.PatientId))
+                    {
+                        int countObservation = 0;
+                        MySqlCommand getObservations = new MySqlCommand("get_observation", DBConnection.Instance().Connection);
+                        using (reader = getObservations.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (observation.ObservationId == reader["observationId"].ToString())
+                                {
+                                    countObservation++;
+                                    break;
+                                }
+                            }
+                            if (countObservation == 0)
+                            {
+                                //insert
+                            }
+                            else
+                            {
+                                //update
+                            }
+                        }
+                    }
+
+                    Statistic statistic = Statistic.GetStatistic(ip,patient.PatientId);
+                    MySqlCommand updateStatistic = new MySqlCommand("update_statistic", DBConnection.Instance().Connection);
+                    updateStatistic.CommandType = CommandType.StoredProcedure;
+                    updateStatistic.Parameters.Add(new MySqlParameter("patientId", statistic.PatientId));
+                    updateStatistic.Parameters.Add(new MySqlParameter("from", statistic.From));
+                    updateStatistic.Parameters.Add(new MySqlParameter("to", statistic.To));
+                    updateStatistic.Parameters.Add(new MySqlParameter("totalTimeInBed", statistic.TotalTimeInBed));
+                    updateStatistic.Parameters.Add(new MySqlParameter("maxTimeWithoutMobility", statistic.MaxTimeWithoutMobility));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfBedExits", statistic.NumberOfBedExits));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfBedExitWarnings", statistic.NumberOfBedExitWarnings));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfConfirmedBedExitWarnings", statistic.NumberOfConfirmedBedExitWarnings));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfImmobilityWarnings", statistic.NumberOfImmobilityWarnings));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfManualRegisteredRepositionings", statistic.NumberOfManualRegisteredRepositionings));
+                    updateStatistic.Parameters.Add(new MySqlParameter("numberOfMovementsPerHour", statistic.NumberOfMovementsPerHour));
+                    
+                    DBConnection.Instance().Open();
+                    updateStatistic.ExecuteNonQuery();
+                    DBConnection.Instance().Close();
                 }
             }
-            
+            foreach (Device device in Device.GetNewDeviceResponse(ip))
+            {
+                int countDevice = 0;
+                MySqlCommand getDevices = new MySqlCommand("get_devices", DBConnection.Instance().Connection);
+                using (reader = getDevices.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        if (device.DeviceId == reader["deviceId"].ToString())
+                        {
+                            countDevice++;
+                            break;
+                        }
+                    }
+                    if (countDevice == 0)
+                    {
+                        //insert
+                    }
+                    else
+                    {
+                        //update
+                    }
+                }
 
-            //do this in foreach dep
-            //MySqlCommand insertDep = new MySqlCommand("insertinto_department", DBConnection.Instance().Connection);
-            //insertDep.CommandType = CommandType.StoredProcedure;
-            //insertDep.Parameters.Add(new MySqlParameter("departmentId", department.DepartmentId));
-            //insertDep.Parameters.Add(new MySqlParameter("departmentName", department.DepartmentName));
-            //DBConnection.Instance().Open();
-            //insertDep.ExecuteNonQuery();
-            //DBConnection.Instance().Close();
+                Livestate livestate = Livestate.GetLivestate(ip,device.SerialNumber);
+                MySqlCommand updateLivestate = new MySqlCommand("update_livestate", DBConnection.Instance().Connection);
+                updateLivestate.CommandType = CommandType.StoredProcedure;
+                updateLivestate.Parameters.Add(new MySqlParameter("deviceId", livestate.DeviceId));
+                updateLivestate.Parameters.Add(new MySqlParameter("from", livestate.BedEmptyTimer));
+                updateLivestate.Parameters.Add(new MySqlParameter("to", livestate.BedExitAlertSetting));
+                updateLivestate.Parameters.Add(new MySqlParameter("totalTimeInBed", livestate.BedExitAlertTimer));
+                updateLivestate.Parameters.Add(new MySqlParameter("maxTimeWithoutMobility", livestate.ControlSignal));
+                updateLivestate.Parameters.Add(new MySqlParameter("numberOfBedExits", livestate.ImmobilityAlertSetting));
+                updateLivestate.Parameters.Add(new MySqlParameter("numberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
+                updateLivestate.Parameters.Add(new MySqlParameter("numberOfConfirmedBedExitWarnings", livestate.SystemError));
+                updateLivestate.Parameters.Add(new MySqlParameter("numberOfImmobilityWarnings", livestate.SystemErrorTimer));                
 
-
-
-            //DBConnection.Instance().Open();
-            //string cmdText = "INSERT INTO department VALUES (@departmentId, @name)";
-            //MySqlCommand cmd = new MySqlCommand(cmdText, DBConnection.Instance().Connection);
-            //cmd.Parameters.AddWithValue("@departmentId", "Test");
-            //cmd.Parameters.AddWithValue("@name", "Test");
-            //cmd.ExecuteNonQuery();
-            //DBConnection.Instance().Close();
-
-        }
-        public static void RunUpdate()
-        {
-
-        }
+                DBConnection.Instance().Open();
+                updateLivestate.ExecuteNonQuery();
+                DBConnection.Instance().Close();
+            }            
+        }      
     }
 }
 

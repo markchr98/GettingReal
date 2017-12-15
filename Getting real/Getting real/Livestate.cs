@@ -11,7 +11,7 @@ namespace Getting_real
 {
     class Livestate
     {
-
+        private string deviceId;
         private string controlSignal;
         private string immobilityAlertSetting;
         private string immobilityAlertTimer;
@@ -20,8 +20,12 @@ namespace Getting_real
         private string bedExitAlertSetting;
         private string systemError;
         private string systemErrorTimer;
-        
-        
+
+        public string DeviceId
+        {
+            get { return deviceId; }
+            set { deviceId = value; }
+        }
 
         public string ControlSignal
         {
@@ -71,7 +75,7 @@ namespace Getting_real
             set { systemErrorTimer = value; }
         }
         
-        public static Livestate GetNewLivestates(string ip, string deviceSerial)
+        public static Livestate GetLivestate(string ip, string deviceSerial)
         {
             using (WebClient client = new WebClient())
             {
@@ -90,6 +94,7 @@ namespace Getting_real
                 //livestate.device = (string)jObject["deivce"];
                 //livestate.patient = (string)jObject["patient"];
 
+                livestate.deviceId = (string)jObject["deviceId"];
                 livestate.controlSignal = (string)jObject["controlSignal"];
                 livestate.immobilityAlertSetting = (string)jObject["immobilityAlertSetting"];
                 livestate.immobilityAlertTimer = (string)jObject["immobilityAlertTimer"];

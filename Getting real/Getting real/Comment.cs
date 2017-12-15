@@ -24,7 +24,7 @@ namespace Getting_real
         public string UserId { get => userId; set => userId = value; }
         public string EditedOn { get => editedOn; set => editedOn = value; }
 
-        public static List<Comment> GetNewDeviceResponse(string ip, string patientId)
+        public static List<Comment> GetComments(string ip, string patientId)
         {
             using (WebClient client = new WebClient())
             {

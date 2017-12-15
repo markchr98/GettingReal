@@ -34,7 +34,7 @@ namespace Getting_real
         public string NumberOfMovementsPerHour { get => numberOfMovementsPerHour; set => numberOfMovementsPerHour = value; }
         public string NumberOfImmobilityWarnings { get => numberOfImmobilityWarnings; set => numberOfImmobilityWarnings = value; }
 
-        public static Statistic GetNewDeviceResponse(string ip, string patientId)
+        public static Statistic GetStatistic(string ip, string patientId)
         {
             Statistic statistic = new Statistic();
             using (WebClient client = new WebClient())

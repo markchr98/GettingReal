@@ -22,7 +22,7 @@ namespace Getting_real
         public string DurationInMinutes { get => durationInMinutes; set => durationInMinutes = value; }
         public string UserId { get => userId; set => userId = value; }
 
-        public static List<Observation> GetNewDeviceResponse(string ip, string patientId)
+        public static List<Observation> GetObservations(string ip, string patientId)
         {
             using (WebClient client = new WebClient())
             {

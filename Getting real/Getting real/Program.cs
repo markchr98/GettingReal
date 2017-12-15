@@ -12,7 +12,7 @@ namespace Getting_real
     {        
         static void Main(string[] args)
         {            
-            Controller.RunInsert();
+            Controller.Run();
         }
     }
 }
