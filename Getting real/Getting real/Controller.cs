@@ -128,11 +128,35 @@ namespace Getting_real
                             }
                             if(countComment == 0)
                             {
-                                //insert
+                                MySqlCommand insertComment = new MySqlCommand("insertinto_comment", DBConnection.Instance().Connection);
+                                insertComment.CommandType = CommandType.StoredProcedure;
+
+                                insertComment.Parameters.Add(new MySqlParameter("commentId", comment.CommentId));
+                                insertComment.Parameters.Add(new MySqlParameter("commentText", comment.CommentText));
+                                insertComment.Parameters.Add(new MySqlParameter("patientId", comment.PatientId));
+                                insertComment.Parameters.Add(new MySqlParameter("userId", comment.UserId));
+                                insertComment.Parameters.Add(new MySqlParameter("editedOn", comment.EditedOn));
+                                insertComment.Parameters.Add(new MySqlParameter("time", comment.Time));
+
+                                DBConnection.Instance().Open();
+                                insertComment.ExecuteNonQuery();
+                                DBConnection.Instance().Close();
                             }
                             else
                             {
-                                //update
+                                MySqlCommand updateComment = new MySqlCommand("update_comment", DBConnection.Instance().Connection);
+                                updateComment.CommandType = CommandType.StoredProcedure;
+
+                                updateComment.Parameters.Add(new MySqlParameter("commentId", comment.CommentId));
+                                updateComment.Parameters.Add(new MySqlParameter("commentText", comment.CommentText));
+                                updateComment.Parameters.Add(new MySqlParameter("patientId", comment.PatientId));
+                                updateComment.Parameters.Add(new MySqlParameter("userId", comment.UserId));
+                                updateComment.Parameters.Add(new MySqlParameter("editedOn", comment.EditedOn));
+                                updateComment.Parameters.Add(new MySqlParameter("time", comment.Time));                               
+
+                                DBConnection.Instance().Open();
+                                updateComment.ExecuteNonQuery();
+                                DBConnection.Instance().Close();
                             }
                         }
                     }
@@ -152,15 +176,38 @@ namespace Getting_real
                             }
                             if (countObservation == 0)
                             {
-                                //insert
+                                MySqlCommand updateObservation = new MySqlCommand("insertinto_observation", DBConnection.Instance().Connection);
+                                updateObservation.CommandType = CommandType.StoredProcedure;
+
+                                updateObservation.Parameters.Add(new MySqlParameter("observationId", observation.ObservationId));
+                                updateObservation.Parameters.Add(new MySqlParameter("durationInMinutes", observation.DurationInMinutes));
+                                updateObservation.Parameters.Add(new MySqlParameter("patientId", observation.PatientId));
+                                updateObservation.Parameters.Add(new MySqlParameter("time", observation.Time));
+                                updateObservation.Parameters.Add(new MySqlParameter("userId", observation.UserId));
+
+                                DBConnection.Instance().Open();
+                                updateObservation.ExecuteNonQuery();
+                                DBConnection.Instance().Close();
                             }
                             else
                             {
-                                //update
+                                MySqlCommand updateObservation = new MySqlCommand("update_observation", DBConnection.Instance().Connection);
+                                updateObservation.CommandType = CommandType.StoredProcedure;
+
+                                updateObservation.Parameters.Add(new MySqlParameter("observationId", observation.ObservationId));
+                                updateObservation.Parameters.Add(new MySqlParameter("durationInMinutes", observation.DurationInMinutes));
+                                updateObservation.Parameters.Add(new MySqlParameter("patientId", observation.PatientId));
+                                updateObservation.Parameters.Add(new MySqlParameter("time", observation.Time));
+                                updateObservation.Parameters.Add(new MySqlParameter("userId", observation.UserId));                                
+
+                                DBConnection.Instance().Open();
+                                updateObservation.ExecuteNonQuery();
+                                DBConnection.Instance().Close();
                             }
                         }
                     }
 
+                    //check this
                     Statistic statistic = Statistic.GetStatistic(ip,patient.PatientId);
                     MySqlCommand updateStatistic = new MySqlCommand("update_statistic", DBConnection.Instance().Connection);
                     updateStatistic.CommandType = CommandType.StoredProcedure;
@@ -197,11 +244,34 @@ namespace Getting_real
                     }
                     if (countDevice == 0)
                     {
-                        //insert
+                        MySqlCommand updateDevice = new MySqlCommand("insertinto_device", DBConnection.Instance().Connection);
+                        updateDevice.CommandType = CommandType.StoredProcedure;
+
+                        updateDevice.Parameters.Add(new MySqlParameter("deviceId", device.DeviceId));
+                        updateDevice.Parameters.Add(new MySqlParameter("assignedPatientId", device.AssignedPatientId));
+                        updateDevice.Parameters.Add(new MySqlParameter("connectionQuality", device.ConnectionQuality));
+                        updateDevice.Parameters.Add(new MySqlParameter("lastOnlineTime", device.LastOnlineTime));
+                        updateDevice.Parameters.Add(new MySqlParameter("serialNumber", device.SerialNumber));
+
+                        DBConnection.Instance().Open();
+                        updateDevice.ExecuteNonQuery();
+                        DBConnection.Instance().Close();
                     }
+                
                     else
                     {
-                        //update
+                        MySqlCommand updateDevice = new MySqlCommand("update_device", DBConnection.Instance().Connection);
+                        updateDevice.CommandType = CommandType.StoredProcedure;
+
+                        updateDevice.Parameters.Add(new MySqlParameter("deviceId", device.DeviceId));
+                        updateDevice.Parameters.Add(new MySqlParameter("assignedPatientId", device.AssignedPatientId));
+                        updateDevice.Parameters.Add(new MySqlParameter("connectionQuality", device.ConnectionQuality));
+                        updateDevice.Parameters.Add(new MySqlParameter("lastOnlineTime", device.LastOnlineTime));
+                        updateDevice.Parameters.Add(new MySqlParameter("serialNumber", device.SerialNumber));                        
+
+                        DBConnection.Instance().Open();
+                        updateDevice.ExecuteNonQuery();
+                        DBConnection.Instance().Close();
                     }
                 }
 
