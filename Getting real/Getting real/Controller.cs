@@ -37,7 +37,7 @@ namespace Getting_real
                 }
             }
 
-            MySqlCommand getPatients = new MySqlCommand("get_patients", DBConnection.Instance().Connection);
+            MySqlCommand getPatients = new MySqlCommand("get_patient", DBConnection.Instance().Connection);
             using (reader = getPatients.ExecuteReader())
             {
                 while (reader.Read())
