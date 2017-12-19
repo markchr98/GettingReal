@@ -6,8 +6,8 @@ namespace Getting_real
 {
     public class DBConnection
     {
-        //Need values 
-        private static string Server = "10.140.65.233";
+        //databse values
+        private static string Server = "10.140.69.122";
         private string port = "3306";
         private static string Username = "root";
         private static string Password = "your_password";
