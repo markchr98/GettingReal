@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Getting real", "Getting real\Getting real.csproj", "{A429DE23-22BF-4205-9799-77A30C7358E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCMHarvestService", "MCMHarvestService\MCMHarvestService.csproj", "{4CCEECD0-EDDB-4325-BBF6-FC4087CB6A8F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{F70AE629-11C2-44EB-B561-BCD37B70BFA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,8 @@ Global
 		{4CCEECD0-EDDB-4325-BBF6-FC4087CB6A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CCEECD0-EDDB-4325-BBF6-FC4087CB6A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CCEECD0-EDDB-4325-BBF6-FC4087CB6A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70AE629-11C2-44EB-B561-BCD37B70BFA5}.Debug|Any CPU.ActiveCfg = Debug
+		{F70AE629-11C2-44EB-B561-BCD37B70BFA5}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
