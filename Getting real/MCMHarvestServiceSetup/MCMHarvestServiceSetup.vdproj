@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8A5DCABF614E4F9DB86759F267315A7B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9581D6D51A1447B7B61D2CE617429539"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -183,6 +189,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A5DCABF614E4F9DB86759F267315A7B"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Desktop\\installguide.txt"
+            "TargetName" = "8:installguide.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_692212C41A7848FAAF4A9033CEDA98C8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE122C29A68F6C7B82BA6B5E545AF9C9"
@@ -355,7 +381,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MCMHarvestService"
         "ProductCode" = "8:{D6FDBADC-1DA4-4ABB-B353-9A2535EE495D}"
-        "PackageCode" = "8:{A8225BCF-166C-45D9-9AAC-2F84C453593C}"
+        "PackageCode" = "8:{99EC190B-A834-4A08-B9A4-9DE17EFDBA0D}"
         "UpgradeCode" = "8:{EA7CD737-B27E-4D15-9310-7E4E1FEE58BE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
