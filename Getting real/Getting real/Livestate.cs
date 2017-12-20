@@ -86,13 +86,7 @@ namespace Getting_real
                 
                 string response = client.DownloadString(URL);
                 
-                JObject jObject = JObject.Parse(response);
-
-                //find data fra json i json
-                //JObject patient = (JObject)(jObject["patient"]);
-                //string patientId = (string)patient["patientId"];
-                //livestate.device = (string)jObject["deivce"];
-                //livestate.patient = (string)jObject["patient"];
+                JObject jObject = JObject.Parse(response);                
 
                 livestate.deviceId = (string)jObject["deviceId"];
                 livestate.controlSignal = (string)jObject["controlSignal"];
