@@ -22,6 +22,7 @@ namespace MCMHarvestService
 
         protected override void OnStart(string[] args)
         {
+            //runs OnElapsed every 5seconds
             timer = new Timer(5000);
             timer.AutoReset = true;
             timer.Start();
