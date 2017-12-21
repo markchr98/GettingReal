@@ -1,0 +1,25 @@
+Dansk:
+Microsoft.NET Framework v4.0.30319 er en forudsætning for installationen af MCMHarvestService.
+Dette skal derfor være installeret før MCMHarvestService. Se link nedenunder.
+https://www.microsoft.com/da-dk/download/details.aspx?id=17851
+Når installation af Microsoft.NET Framework er fuldført fortsæt.
+
+Dobbelt-klik på MCMHarvestServiceSetup og følg instruktionerne.
+Når du er færdig naviger gennem stifinder til installations placeringen. Standard:
+Drev C: -> Program Files[x86] -> izinga -> MCMHarvestService
+Her vil du finde en fil med navnet install. Højre klik og kør som administrator.
+Dette vil åbne en kommando prompt og installere tjenesten
+
+
+
+English:
+Microsoft.NET Framework v4.0.30319 is a prerequisite for the installation of MCMHarvestService.
+This must therefore be installed before MCMHarvestService. See link below.
+https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=17851&ppud=4
+When the installation of Microsoft.NET Framework is complete continue.
+
+Double-Click on MCMHarvestServiceSetup and follow the instructions.
+When completed navigate through Windows explorer to where you installed it. Default:
+Drive C: -> Program Files[x86] -> izinga -> MCMHarvestService
+Here you will find a file called install. Right click and Run as administrator.
+This will open a command promp and install the service.
