@@ -34,7 +34,7 @@ namespace Getting_real
 
             token.GetNewTokenResponse(ip);
             GetDataFromCloud();
-            SendDataToCloud();                     
+            SynchronizeCloud();                     
         }
 
         public void GetDataFromCloud()
@@ -107,7 +107,7 @@ namespace Getting_real
             DBConnection.Instance().Close();
         }
 
-        public void SendDataToCloud()
+        public void SynchronizeCloud()
         {
             DBConnection.Instance().Open();
 
