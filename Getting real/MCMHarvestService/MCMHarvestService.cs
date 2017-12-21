@@ -36,7 +36,8 @@ namespace MCMHarvestService
 
         private void OnElapsed(object source, ElapsedEventArgs e)
         {
-            Controller.Run();
+            Controller controller = new Controller();
+            controller.Run();
         }
     }
 }

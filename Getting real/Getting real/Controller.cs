@@ -12,20 +12,33 @@ namespace Getting_real
         //change ip to local      
         public const string ip = "localhost";
         public static Token token = new Token();
+        private MySqlDataReader reader;
 
-        public static void Run()
-        {
-            MySqlDataReader reader;
-            List<Department> departmentList = new List<Department>();
-            List<Device> DeviceList = new List<Device>();
-            List<Patient> patientlist = new List<Patient>();
-            List<Comment> commentList = new List<Comment>();
-            List<Observation> ObservationList = new List<Observation>();
-            List<Statistic> statisticList = new List<Statistic>();
-            List<Livestate> livestateList = new List<Livestate>();
+        private List<Department> departmentList;
+        private List<Device> DeviceList;
+        private List<Patient> patientlist;
+        private List<Comment> commentList;
+        private List<Observation> ObservationList;
+        private List<Statistic> statisticList;
+        private List<Livestate> livestateList;
+
+        public void Run()
+        {            
+            departmentList = new List<Department>();
+            DeviceList = new List<Device>();
+            patientlist = new List<Patient>();
+            commentList = new List<Comment>();
+            ObservationList = new List<Observation>();
+            statisticList = new List<Statistic>();
+            livestateList = new List<Livestate>();
 
             token.GetNewTokenResponse(ip);
-            
+            GetDataFromCloud();
+            SendDataToCloud();                     
+        }
+
+        public void GetDataFromCloud()
+        {
             DBConnection.Instance().Open();
 
             MySqlCommand getDepartments = new MySqlCommand("get_departments", DBConnection.Instance().Connection);
@@ -90,6 +103,13 @@ namespace Getting_real
                     livestateList.Add(new Livestate() { DeviceId = reader["deviceId"].ToString() });
                 }
             }
+
+            DBConnection.Instance().Close();
+        }
+
+        public void SendDataToCloud()
+        {
+            DBConnection.Instance().Open();
 
             foreach (Department department in Department.GetNewDeparments(ip))
             {
@@ -265,24 +285,52 @@ namespace Getting_real
                         }
                     }
 
-
-                    //How do we update statistics simple count
                     Statistic statistic = Statistic.GetStatistic(ip, patient.PatientId);
-                    MySqlCommand updateStatistic = new MySqlCommand("update_statistic", DBConnection.Instance().Connection);
-                    updateStatistic.CommandType = CommandType.StoredProcedure;
-                    updateStatistic.Parameters.Add(new MySqlParameter("setpatientId", statistic.PatientId));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setdateFrom", statistic.From));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setdateTo", statistic.To));
-                    updateStatistic.Parameters.Add(new MySqlParameter("settotalTimeInBed", statistic.TotalTimeInBed));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", statistic.MaxTimeWithoutMobility));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExits", statistic.NumberOfBedExits));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", statistic.NumberOfBedExitWarnings));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", statistic.NumberOfConfirmedBedExitWarnings));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", statistic.NumberOfImmobilityWarnings));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfManualRegisteredRepositionings", statistic.NumberOfManualRegisteredRepositionings));
-                    updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfMovementsPerHour", statistic.NumberOfMovementsPerHour));
+                    int countStatistic = 0;
+                    foreach (Statistic uStatistic in statisticList)
+                    {
+                        if (statistic.PatientId == uStatistic.PatientId)
+                        {
+                            countStatistic++;
+                            break;
+                        }
+                    }
+                    if (countStatistic == 0)
+                    {
+                        MySqlCommand insertStatistic = new MySqlCommand("insertinto_statistic", DBConnection.Instance().Connection);
+                        insertStatistic.CommandType = CommandType.StoredProcedure;
+                        insertStatistic.Parameters.Add(new MySqlParameter("setpatientId", statistic.PatientId));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setdateFrom", statistic.From));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setdateTo", statistic.To));
+                        insertStatistic.Parameters.Add(new MySqlParameter("settotalTimeInBed", statistic.TotalTimeInBed));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", statistic.MaxTimeWithoutMobility));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExits", statistic.NumberOfBedExits));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", statistic.NumberOfBedExitWarnings));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", statistic.NumberOfConfirmedBedExitWarnings));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", statistic.NumberOfImmobilityWarnings));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfManualRegisteredRepositionings", statistic.NumberOfManualRegisteredRepositionings));
+                        insertStatistic.Parameters.Add(new MySqlParameter("setnumberOfMovementsPerHour", statistic.NumberOfMovementsPerHour));
 
-                    updateStatistic.ExecuteNonQuery();
+                        insertStatistic.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MySqlCommand updateStatistic = new MySqlCommand("update_statistic", DBConnection.Instance().Connection);
+                        updateStatistic.CommandType = CommandType.StoredProcedure;
+                        updateStatistic.Parameters.Add(new MySqlParameter("setpatientId", statistic.PatientId));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setdateFrom", statistic.From));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setdateTo", statistic.To));
+                        updateStatistic.Parameters.Add(new MySqlParameter("settotalTimeInBed", statistic.TotalTimeInBed));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", statistic.MaxTimeWithoutMobility));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExits", statistic.NumberOfBedExits));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", statistic.NumberOfBedExitWarnings));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", statistic.NumberOfConfirmedBedExitWarnings));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", statistic.NumberOfImmobilityWarnings));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfManualRegisteredRepositionings", statistic.NumberOfManualRegisteredRepositionings));
+                        updateStatistic.Parameters.Add(new MySqlParameter("setnumberOfMovementsPerHour", statistic.NumberOfMovementsPerHour));
+
+                        updateStatistic.ExecuteNonQuery();
+                    }
                 }
             }
             foreach (Device device in Device.GetNewDeviceResponse(ip))
@@ -326,23 +374,52 @@ namespace Getting_real
                     updateDevice.ExecuteNonQuery();
                 }
 
-
                 Livestate livestate = Livestate.GetLivestate(ip, device.SerialNumber);
-                MySqlCommand updateLivestate = new MySqlCommand("update_livestate", DBConnection.Instance().Connection);
-                updateLivestate.CommandType = CommandType.StoredProcedure;
-                updateLivestate.Parameters.Add(new MySqlParameter("setdeviceId", livestate.DeviceId));
-                updateLivestate.Parameters.Add(new MySqlParameter("setfrom", livestate.BedEmptyTimer));
-                updateLivestate.Parameters.Add(new MySqlParameter("setto", livestate.BedExitAlertSetting));
-                updateLivestate.Parameters.Add(new MySqlParameter("settotalTimeInBed", livestate.BedExitAlertTimer));
-                updateLivestate.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", livestate.ControlSignal));
-                updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExits", livestate.ImmobilityAlertSetting));
-                updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
-                updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", livestate.SystemError));
-                updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", livestate.SystemErrorTimer));
+                int countLivestate = 0;
+                foreach (Livestate uLivestate in livestateList)
+                {
+                    if (livestate.DeviceId == uLivestate.DeviceId)
+                    {
+                        countLivestate++;
+                        break;
+                    }
+                }
+                if (countLivestate == 0)
+                {
+                    //inserts new livestate for a device in cloud database
+                    MySqlCommand insertLivestate = new MySqlCommand("insertinto_livestate", DBConnection.Instance().Connection);
+                    insertLivestate.CommandType = CommandType.StoredProcedure;
+                    insertLivestate.Parameters.Add(new MySqlParameter("setdeviceId", livestate.DeviceId));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setfrom", livestate.BedEmptyTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setto", livestate.BedExitAlertSetting));
+                    insertLivestate.Parameters.Add(new MySqlParameter("settotalTimeInBed", livestate.BedExitAlertTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", livestate.ControlSignal));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExits", livestate.ImmobilityAlertSetting));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", livestate.SystemError));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", livestate.SystemErrorTimer));
 
-                updateLivestate.ExecuteNonQuery();
+                    insertLivestate.ExecuteNonQuery();
+                }
+                else
+                {
+                    //updates an existing livestate in cloud database
+                    MySqlCommand updateLivestate = new MySqlCommand("update_livestate", DBConnection.Instance().Connection);
+                    updateLivestate.CommandType = CommandType.StoredProcedure;
+                    updateLivestate.Parameters.Add(new MySqlParameter("setdeviceId", livestate.DeviceId));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setfrom", livestate.BedEmptyTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setto", livestate.BedExitAlertSetting));
+                    updateLivestate.Parameters.Add(new MySqlParameter("settotalTimeInBed", livestate.BedExitAlertTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", livestate.ControlSignal));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExits", livestate.ImmobilityAlertSetting));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", livestate.SystemError));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", livestate.SystemErrorTimer));
+
+                    updateLivestate.ExecuteNonQuery();
+                }
             }
-            DBConnection.Instance().Close();            
+            DBConnection.Instance().Close();
         }
     }
 }

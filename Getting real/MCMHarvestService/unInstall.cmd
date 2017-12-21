@@ -1,1 +1,1 @@
-NET start MCMHarvestService && C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil /u "C:\Program Files (x86)\izinga\MCMHarvestService\MCMHarvestService.exe"
+NET stop MCMHarvestService && C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil /u "C:\Program Files (x86)\izinga\MCMHarvestService\MCMHarvestService.exe"
