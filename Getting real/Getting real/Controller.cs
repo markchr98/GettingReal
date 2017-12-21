@@ -115,8 +115,8 @@ namespace Getting_real
             {
                 int countDepartment = 0;
                 foreach (Department uDepartment in departmentList)
-                {
-                    //Check dep id først hvis eksisterer check på alle data. evt kun check på alle data i en ny timer
+                {                    
+                    //Checks if a department already exists in the cloud database by using the primary key departmentId
                     if (department.DepartmentId == uDepartment.DepartmentId)
                     {
                         countDepartment++;
