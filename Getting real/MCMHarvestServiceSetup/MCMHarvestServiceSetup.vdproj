@@ -15,19 +15,25 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_08359C6FD11F2564E8F7B15A2520F9E6"
-        "OwnerKey" = "8:_85F591D0372EC202502F4E3566CA3DF2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_08359C6FD11F2564E8F7B15A2520F9E6"
+        "MsmKey" = "8:_42CB2D474EE518D94D4C496804A88078"
         "OwnerKey" = "8:_9581D6D51A1447B7B61D2CE617429539"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_85F591D0372EC202502F4E3566CA3DF2"
+        "MsmKey" = "8:_6714089707CC4FD2BE4C0D4641B562E1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_68AFC21C7FA16CE06C5A0EC7B5875764"
+        "OwnerKey" = "8:_42CB2D474EE518D94D4C496804A88078"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_68AFC21C7FA16CE06C5A0EC7B5875764"
         "OwnerKey" = "8:_9581D6D51A1447B7B61D2CE617429539"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,20 +45,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A2756DF995DF9B9382B1A57F29A60BF1"
-        "OwnerKey" = "8:_85F591D0372EC202502F4E3566CA3DF2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A2756DF995DF9B9382B1A57F29A60BF1"
-        "OwnerKey" = "8:_9581D6D51A1447B7B61D2CE617429539"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_ACE85FC045F9495D80B6D8C393B26D56"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B910FB1B2421B6B716D40DA103840A97"
+        "OwnerKey" = "8:_42CB2D474EE518D94D4C496804A88078"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B910FB1B2421B6B716D40DA103840A97"
+        "OwnerKey" = "8:_9581D6D51A1447B7B61D2CE617429539"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,19 +82,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_85F591D0372EC202502F4E3566CA3DF2"
+        "OwnerKey" = "8:_42CB2D474EE518D94D4C496804A88078"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08359C6FD11F2564E8F7B15A2520F9E6"
+        "OwnerKey" = "8:_B910FB1B2421B6B716D40DA103840A97"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A2756DF995DF9B9382B1A57F29A60BF1"
+        "OwnerKey" = "8:_68AFC21C7FA16CE06C5A0EC7B5875764"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -122,6 +128,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -146,6 +160,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -176,45 +198,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_08359C6FD11F2564E8F7B15A2520F9E6"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_08359C6FD11F2564E8F7B15A2520F9E6"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Newtonsoft.Json.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_692212C41A7848FAAF4A9033CEDA98C8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_85F591D0372EC202502F4E3566CA3DF2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_42CB2D474EE518D94D4C496804A88078"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Getting real, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_85F591D0372EC202502F4E3566CA3DF2"
+                    "_42CB2D474EE518D94D4C496804A88078"
                     {
                     "Name" = "8:Getting real.exe"
                     "Attributes" = "3:512"
@@ -238,14 +229,34 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A2756DF995DF9B9382B1A57F29A60BF1"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6714089707CC4FD2BE4C0D4641B562E1"
+            {
+            "SourcePath" = "8:..\\MCMHarvestService\\unInstall.cmd"
+            "TargetName" = "8:unInstall.cmd"
+            "Tag" = "8:"
+            "Folder" = "8:_692212C41A7848FAAF4A9033CEDA98C8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68AFC21C7FA16CE06C5A0EC7B5875764"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A2756DF995DF9B9382B1A57F29A60BF1"
+                    "_68AFC21C7FA16CE06C5A0EC7B5875764"
                     {
                     "Name" = "8:MySql.Data.dll"
                     "Attributes" = "3:512"
@@ -287,6 +298,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B910FB1B2421B6B716D40DA103840A97"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B910FB1B2421B6B716D40DA103840A97"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Newtonsoft.Json.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_692212C41A7848FAAF4A9033CEDA98C8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE122C29A68F6C7B82BA6B5E545AF9C9"
@@ -397,7 +439,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MCMHarvestService"
         "ProductCode" = "8:{D6FDBADC-1DA4-4ABB-B353-9A2535EE495D}"
-        "PackageCode" = "8:{99EC190B-A834-4A08-B9A4-9DE17EFDBA0D}"
+        "PackageCode" = "8:{1F8A2A89-E7CE-4207-9F9B-59D9238F65D0}"
         "UpgradeCode" = "8:{EA7CD737-B27E-4D15-9310-7E4E1FEE58BE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -412,7 +454,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:MCMHarvestService"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Dtata transfer from Mobilty Monitor to Usizo cloud service."
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -918,7 +960,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9581D6D51A1447B7B61D2CE617429539"
             {
-            "SourcePath" = "8:..\\MCMHarvestService\\obj\\Debug\\MCMHarvestService.exe"
+            "SourcePath" = "8:..\\MCMHarvestService\\obj\\Release\\MCMHarvestService.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_692212C41A7848FAAF4A9033CEDA98C8"

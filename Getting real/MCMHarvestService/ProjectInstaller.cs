@@ -15,15 +15,15 @@ namespace MCMHarvestService
         public ProjectInstaller()
         {
             InitializeComponent();
-            this.AfterInstall += new InstallEventHandler(ServiceInstaller1_AfterInstall);
+            //this.AfterInstall += new InstallEventHandler(ServiceInstaller1_AfterInstall);
         }
 
         private void ServiceInstaller1_AfterInstall(object sender, InstallEventArgs e)
         {
-            using (ServiceController sc = new ServiceController(serviceInstaller1.ServiceName))
-            {
-                sc.Start();
-            }
+            //using (ServiceController sc = new ServiceController(serviceInstaller1.ServiceName))
+            //{
+            //    sc.Start();
+            //}
         }
 
         private void ServiceProcessInstaller1_AfterInstall(object sender, InstallEventArgs e)

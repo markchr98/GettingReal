@@ -342,9 +342,7 @@ namespace Getting_real
 
                 updateLivestate.ExecuteNonQuery();
             }
-            DBConnection.Instance().Close();
-            Console.WriteLine("SUCCES");
-            Console.ReadLine();
+            DBConnection.Instance().Close();            
         }
     }
 }

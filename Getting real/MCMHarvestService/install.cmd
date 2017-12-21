@@ -1,1 +1,1 @@
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil ".\MCMHarvestService.exe" 
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil "C:\Program Files (x86)\izinga\MCMHarvestService\MCMHarvestService.exe" && NET start MCMHarvestService
