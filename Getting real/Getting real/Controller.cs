@@ -25,7 +25,7 @@ namespace Getting_real
             List<Livestate> livestateList = new List<Livestate>();
 
             token.GetNewTokenResponse(ip);
-            //insert departments. write check ifExists and update ifExists is true
+            
             DBConnection.Instance().Open();
 
             MySqlCommand getDepartments = new MySqlCommand("get_departments", DBConnection.Instance().Connection);
