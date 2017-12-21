@@ -14,6 +14,7 @@ namespace Getting_real
         private string deviceId;
         private string controlSignal;
         private string immobilityAlertSetting;
+        private string lastRelevantMovement;
         private string immobilityAlertTimer;
         private string bedEmptyTimer;
         private string bedExitAlertTimer;
@@ -21,6 +22,11 @@ namespace Getting_real
         private string systemError;
         private string systemErrorTimer;
 
+        public string LastRelevantMovement
+        {
+            get { return lastRelevantMovement; }
+            set { lastRelevantMovement = value; }
+        }
         public string DeviceId
         {
             get { return deviceId; }
@@ -86,11 +92,13 @@ namespace Getting_real
                 
                 string response = client.DownloadString(URL);
                 
-                JObject jObject = JObject.Parse(response);                
+                JObject jObject = JObject.Parse(response);
+                JObject jDevice = JObject.Parse((string)jObject["deviceId"]);
 
-                livestate.deviceId = (string)jObject["deviceId"];
+                livestate.deviceId = (string)jDevice["deviceId"];
                 livestate.controlSignal = (string)jObject["controlSignal"];
                 livestate.immobilityAlertSetting = (string)jObject["immobilityAlertSetting"];
+                livestate.lastRelevantMovement = (string)jObject["lastRelevantMovement"];
                 livestate.immobilityAlertTimer = (string)jObject["immobilityAlertTimer"];
                 livestate.bedEmptyTimer = (string)jObject["bedEmptyTimer"];
                 livestate.bedExitAlertTimer = (string)jObject["bedExitAlertTimer"];

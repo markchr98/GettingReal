@@ -390,14 +390,14 @@ namespace Getting_real
                     MySqlCommand insertLivestate = new MySqlCommand("insertinto_livestate", DBConnection.Instance().Connection);
                     insertLivestate.CommandType = CommandType.StoredProcedure;
                     insertLivestate.Parameters.Add(new MySqlParameter("setdeviceId", livestate.DeviceId));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setfrom", livestate.BedEmptyTimer));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setto", livestate.BedExitAlertSetting));
-                    insertLivestate.Parameters.Add(new MySqlParameter("settotalTimeInBed", livestate.BedExitAlertTimer));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", livestate.ControlSignal));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExits", livestate.ImmobilityAlertSetting));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", livestate.SystemError));
-                    insertLivestate.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", livestate.SystemErrorTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setbedEmptyTimer", livestate.BedEmptyTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setbedExitAlertSetting", livestate.BedExitAlertSetting));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setbedExitAlertTimer", livestate.BedExitAlertTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setcontrolSignal", livestate.ControlSignal));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setimmobilityAlertSetting", livestate.ImmobilityAlertSetting));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setimmobilityAlertTimer", livestate.ImmobilityAlertTimer));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setsystemError", livestate.SystemError));
+                    insertLivestate.Parameters.Add(new MySqlParameter("setsystemErrorTimer", livestate.SystemErrorTimer));
 
                     insertLivestate.ExecuteNonQuery();
                 }
@@ -407,14 +407,15 @@ namespace Getting_real
                     MySqlCommand updateLivestate = new MySqlCommand("update_livestate", DBConnection.Instance().Connection);
                     updateLivestate.CommandType = CommandType.StoredProcedure;
                     updateLivestate.Parameters.Add(new MySqlParameter("setdeviceId", livestate.DeviceId));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setfrom", livestate.BedEmptyTimer));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setto", livestate.BedExitAlertSetting));
-                    updateLivestate.Parameters.Add(new MySqlParameter("settotalTimeInBed", livestate.BedExitAlertTimer));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setmaxTimeWithoutMobility", livestate.ControlSignal));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExits", livestate.ImmobilityAlertSetting));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfBedExitWarnings", livestate.ImmobilityAlertTimer));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfConfirmedBedExitWarnings", livestate.SystemError));
-                    updateLivestate.Parameters.Add(new MySqlParameter("setnumberOfImmobilityWarnings", livestate.SystemErrorTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setbedEmptyTimer", livestate.BedEmptyTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setbedExitAlertSetting", livestate.BedExitAlertSetting));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setbedExitAlertTimer", livestate.BedExitAlertTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setcontrolSignal", livestate.ControlSignal));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setimmobilityAlertSetting", livestate.ImmobilityAlertSetting));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setimmobilityAlertTimer", livestate.ImmobilityAlertTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setsystemError", livestate.SystemError));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setsystemErrorTimer", livestate.SystemErrorTimer));
+                    updateLivestate.Parameters.Add(new MySqlParameter("setlastRelevantMovement",livestate.LastRelevantMovement));
 
                     updateLivestate.ExecuteNonQuery();
                 }
